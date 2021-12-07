@@ -1,7 +1,7 @@
 FROM scratch
 FROM debian:bullseye-slim
 RUN apt-get -y update && apt-get install -y --no-install-recommends apt-utils
-RUN apt-get -y install openssh-server openssh-client htop tmux
+RUN apt-get -y install openssh-server openssh-client htop tmux nano
 RUN /etc/init.d/ssh start
 RUN cd /root \
   && mkdir -p /root/.ssh \
@@ -13,5 +13,7 @@ RUN cd /root \
   && mkdir -p /root/.config/htop
 COPY htoprc /root/.config/htop/htoprc
 RUN chown root:root /root/.config/htop/htoprc
+COPY yup /usr/local/bin/yup
+RUN chmod +x /usr/local/bin/yup
 COPY ./entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

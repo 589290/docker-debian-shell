@@ -3,7 +3,7 @@
 Debian Docker Shell
 =======================================
 
-Builds a Debian 11 (bullseye-slim) docker image that includes an ssh server, htop, and tmux. It also copies in my public RSA keys and an htop config file, starts the ssh daemon, and then finally goes into a sleep loop to keep the container running.  
+Builds a Debian 11 (bullseye-slim) docker image that includes an ssh server, htop, tmux, and nano. It also copies in: my public RSA keys, an htop config file, and a convenient apt update script (yup). It then starts the ssh daemon and finally goes into a sleep loop to keep the container running.  
 
 Build the image with something like:    
 ```docker build -t 589290/debian-shell:latest .```  
