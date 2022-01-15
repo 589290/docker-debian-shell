@@ -3,15 +3,29 @@
 Debian Docker Shell
 =======================================
 
-Builds a Debian 11 (bullseye-slim) docker image that includes an ssh server, htop, tmux, and nano. It also copies in: my public RSA keys, an htop config file, and a convenient apt update script (yup). It then starts the ssh daemon and finally goes into a sleep loop to keep the container running.  
+Builds a Debian 11 (bullseye-slim) docker image that includes a few other packages. It also copies in my public RSA keys and a convenient apt update script (yup). It then starts the ssh daemon and finally goes into a sleep loop to keep the container running.  
 
-Build the image with something like:    
-```docker build -t 589290/debian-shell:latest .```  
-  
-Run it with something like:  
-```docker run -d -p 0.0.0.0:2222:22 --name deb 589290/debian-shell```  
+A prebuilt image of this is here: https://hub.docker.com/r/589290/debian-shell
+
+You can run it using:  
+```
+docker run -d \
+    --name deb \
+    --restart unless-stopped \
+    -p 0.0.0.0:2222:22 \
+    -e TZ=America/Chicago \
+    589290/debian-shell:latest
+```  
   
 Then ```ssh``` into your new <del>box</del> container and enjoy!  
   
+If you'd like to modify the `Dockerfile` and build your own custom image:
 
-Hosted image is here: https://hub.docker.com/r/589290/debian-shell  
+```
+docker build -t 589290/debian-shell:latest .
+```  
+Then push the image up to your container registry:
+
+```
+docker push 589290/debian-shell:latest
+```

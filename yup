@@ -1,13 +1,12 @@
-echo
-apt --yes update ;
-apt --yes full-upgrade ;
-apt --yes dist-upgrade ;
-apt --yes --purge autoremove ;
-apt --yes autoclean ;
-apt --yes clean ;
+echo && \
+sudo apt --assume-yes update && \
+sudo apt --assume-yes --fix-missing --fix-broken full-upgrade && \
+sudo apt --assume-yes --fix-missing --fix-broken dist-upgrade && \
+sudo apt --assume-yes --purge autoremove && \
+sudo apt --assume-yes autoclean && \
+sudo apt --assume-yes clean && \
 if [ -x "$(command -v snap)" ]; then
-  echo
-  echo 'updating snaps...'
-  snap refresh
+  echo '\nupdating snaps...'
+  sudo snap refresh
   echo
 fi
