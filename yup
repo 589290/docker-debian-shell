@@ -6,7 +6,8 @@ sudo apt --assume-yes --purge autoremove && \
 sudo apt --assume-yes autoclean && \
 sudo apt --assume-yes clean && \
 if [ -x "$(command -v snap)" ]; then
-  echo '\nupdating snaps...'
+  echo
+  echo 'updating snaps...'
   sudo snap refresh
   echo
 fi
